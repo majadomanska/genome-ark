@@ -1,0 +1,76 @@
+---
+layout: default
+---
+
+<div class="species-container">
+  
+  <!-- Spis treści -->
+  <aside class="species-sidebar">
+    <h2>Spis Treści</h2>
+    <ul>
+      <li><a href="#taxonomy">Taksonomia</a></li>
+      <li><a href="#resources">Zsekwencjonowane zasoby</a></li>
+      <li><a href="#description">Opis gatunku</a></li>
+    </ul>
+  </aside>
+
+  <!-- Główna zawartość -->
+  <main class="species-content">
+    
+    <!-- Zdjęcie osobnika -->
+    <div class="species-image-container">
+      <img src="{{ page.image }}" alt="{{ page.name }}" class="species-image">
+      <p class="image-credit">{{ page.image_attribution }}</p>
+    </div>
+
+    <!-- Nazwa gatunku -->
+    <h1>{{ page.common_name }}</h1>
+
+    <!-- Sekcja taksonomia -->
+    <section id="taxonomy">
+      <h2>Taksonomia</h2>
+      <p><strong>Rodzina:</strong> {{ page.family.name }}</p>
+      <p><strong>Rząd:</strong> {{ page.order.name }}</p>
+    </section>
+
+    <!-- Sekcja zsekwencjonowanych zasobów -->
+    <section id="resources">
+      <h2>Zsekwencjonowane zasoby</h2>
+      <table class="resource-table">
+        <thead>
+          <tr>
+            <th>Typ</th>
+            <th>Bazy</th>
+            <th>Pokrycie</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sample in page.samples %}
+          <tr class="{% cycle 'even', 'odd' %}">
+            <td>{{ sample.datatype }}</td>
+            <td>{{ sample.bases }}</td>
+            <td>{{ sample.coverage }}</td>
+            <td><a href="{{ sample.url }}" target="_blank">🔗</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Sekcja z opisem -->
+    <section id="description">
+      <h2>Opis gatunku</h2>
+      {{ content }}
+    </section>
+  </main>
+
+  <!-- Ikony social media -->
+  <div class="social-links">
+    <a href="https://facebook.com" target="_blank">📘</a>
+    <a href="https://twitter.com" target="_blank">🐦</a>
+    <a href="https://instagram.com" target="_blank">📸</a>
+  </div>
+
+</div>
+
